@@ -22,7 +22,7 @@ async function handleComment(req,res)
         createdBy:req.user._id
     })
 
-    
+    return res.redirect(`/blog/${req.params.blogId}`)
 }
 
 module.exports ={

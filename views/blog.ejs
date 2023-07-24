@@ -17,8 +17,27 @@
         <img src="<%= userBlog.createdBy.profileImage %>" width="70px"/>
         <h3>Created by :- <%= userBlog.createdBy.fullName %></h3>
     </div>
+    <% if (locals.user) { %>
+        <div class="container mt-2">
+            <form action="/api/blog/comment/<%= userBlog._id %>" method="post">
+                <div class="mb-3">
+                    
+                    <textarea class="form-control" id="comment" name="content" rows="3"></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    <% } %>
+    <h2>Comments :- <%= comments?.length %> </h2>
+    <ul>
 
-   
+        <% comments?.forEach(comment => { %>
+            <li>
+                <h3><%= comment.createdBy.fullName %></h3>
+                <p><%= comment.content %></p>
+            </li>
+        <% }) %>
+    </ul>
     <%-include("./partials/script") %>
 </body>
 </html>
